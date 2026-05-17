@@ -1,12 +1,14 @@
 {
   // Visit https://aka.ms/tsconfig to read more about this file
   "compilerOptions": {
-    "target": "es6",
-    "module": "commonjs",
+    "esModuleInterop": true,
+    "ignoreDeprecations": "6.0",
+    "target": "es2023",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "rootDir": "./src",
     "outDir": "./dist",
     "strict": true,
-    "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
   },

@@ -4,3 +4,6 @@ node_modules/
 backend_radme.md
 NUL
 package-lock.json
+README.md
+
+/src/generated/prisma
