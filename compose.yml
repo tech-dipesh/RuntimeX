@@ -1,0 +1,31 @@
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: runtime_postgrs
+    environment:
+      - POSTGRES_URL=${docker}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - runtime_postgrs
+    restart: unless-stopped
+
+  backend:
+    build: ./backend
+    container_name: runtime_backend
+    environment:
+      PORT: 3000
+
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+    networks:
+      - runtime_yeti_backend-
+    restart: unless-stopped
+
+networks:
+  yeti-network:
+    driver: bridge
