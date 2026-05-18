@@ -46,7 +46,6 @@ app.post('/upload',async (req:Request, res:Response) => {
     return res.status(500).json({ error: "Internal Server Error" });
   }
 })
-
   app.listen(port, () => {
     console.log(`App is listening on port port`);
   });
