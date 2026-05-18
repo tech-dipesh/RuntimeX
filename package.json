@@ -1,7 +1,8 @@
 {
   "scripts": {
     "dev": "tsc --watch",
-    "start": "nodemon  dist/app.js"
+    "start": "nodemon  dist/app.js",
+    "seed": "pnx prisma migrate dev --name init"
   },
   "dependencies": {
     "@prisma/adapter-pg": "^7.8.0",
