@@ -8,7 +8,7 @@ generator client {
   output   = "../src/generated/prisma"
 }
 model User { 
-  id    uuid     @id @default(uuid()) 
+  id    String     @id @default(uuid()) 
   email String  @unique
   name  String?
   posts Post[]
@@ -19,5 +19,11 @@ model Post {
   content   String?
   published Boolean @default(false) 
   author    User    @relation(fields: [authorId], references: [id]) 
-  authorId  Int
+  authorId  String
 } 
+model Events{
+  id String @id @default(uuid())
+  message String?
+  success String?
+  error String?
+}
