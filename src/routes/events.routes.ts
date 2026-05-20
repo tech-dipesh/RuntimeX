@@ -1,26 +1,29 @@
-import express from "express"
-import type {Events, EventResponse} from "../types/events.ts"
-import prisma from "../config/db.ts"
-const app=express.Routes();
+import { Router, Request, Response } from 'express';
+import prisma from "../lib/prisma.js";
 
+const router = Router();
 
-// app.post
-app.post("/events", async (req: Request, res: Response)=>){
- const {Event: Events}=req.body;
- const {id, type, payload}=Event;
-const AllUser=await prisma.user.findMany({});
-console.log(AllUser);
-
+router.post('/upload', async (req: Request, res: Response) => {
   try {
-    const message={
-  "projectId":"demo-app",
-  "type":"api-call",
-  "payload":{
-    "url":"/jobs",
-    "duration":120
-}
-    return res.status(200).json({message});
+    const user = await prisma.user.create({
+      data: {
+        name: "Alice",
+        email: "alice@prisma.io",
+        posts: {
+          create: {
+            title: "Hello World",
+            content: "This is my first post!",
+            published: true,
+          },
+        },
+      },
+      include: { posts: true },
+    });
+
+    res.status(201).json({ message: "User created", user });
   } catch (error) {
-return res.status(500).json({ message: error.message });
-)}
-export default app;
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+export default router;
