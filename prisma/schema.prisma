@@ -1,29 +1,25 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
-
+datasource db {
+  provider = "postgresql" 
+}
 // Get a free hosted Postgres database in seconds: `npx create-db`
 
 generator client {
   provider = "prisma-client"
   output   = "../src/generated/prisma"
 }
-model User { 
-  id    String     @id @default(uuid()) 
-  email String  @unique
-  name  String?
-  posts Post[]
-} 
-model Post { 
-  id        Int     @id @default(autoincrement()) 
-  title     String
-  content   String?
-  published Boolean @default(false) 
-  author    User    @relation(fields: [authorId], references: [id]) 
-  authorId  String
-} 
+
+enum Type{
+  api_call
+  render
+}
 model Events{
   id String @id @default(uuid())
-  message String?
-  success String?
-  error String?
+  project_id String 
+  session_id String 
+  type Type @default(api_call)
+  payload Json
+  client_ts DateTime
+  received_at DateTime @default(now())
 }

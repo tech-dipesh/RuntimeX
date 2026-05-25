@@ -1,9 +1,9 @@
-import { Router, Request, Response } from 'express';
+import { Router, Request, Response } from "express";
 import prisma from "../lib/prisma.js";
 
 const router = Router();
 
-router.post('/upload', async (req: Request, res: Response) => {
+router.post("/upload", async (req: Request, res: Response) => {
   try {
     const user = await prisma.user.create({
       data: {
@@ -19,8 +19,7 @@ router.post('/upload', async (req: Request, res: Response) => {
       },
       include: { posts: true },
     });
-
-    res.status(201).json({ message: "User created", user });
+    return res.status(200).json({ "projectId":"demo-app", "type":"api-call", "payload":{ "url":"/jobs", "duration":120 }});
   } catch (error) {
     res.status(500).json({ error: "Internal Server Error" });
   }
