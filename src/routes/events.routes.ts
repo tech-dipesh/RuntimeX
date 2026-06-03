@@ -1,12 +1,10 @@
-import { Request, Response, NextFunction } from 'express';
+import { Request, Response, NextFunction, Router } from 'express';
 import { verifyAccessToken } from '../utils/jwt';
 import { UnauthorizedError } from '../utils/errors';
-import { prisma } from '../config/database';
+import {z} from "zod"
 
-
-import { Router, Request, Response } from "express";
 import prisma from "../lib/prisma.js";
-import { batchSchema } from "../validations/events.validations.ts";
+import { batchSchema } from "../validations/events.validations";
 const router = Router();
 
 router.post("/events", async (req: Request, res: Response) => {
@@ -26,12 +24,14 @@ router.post("/events", async (req: Request, res: Response) => {
     });
 
     res.status(201).json({ ingested: batch.count });
-  } catch (error) {
+  } catch (error: unknown) {
+    if (error instanceof Error){
+    return res.status(500).json({ message: error.message });
+    }
     if (error instanceof z.ZodError) {
       res.status(400).json({ error: "Invalid event data", details: error.errors });
     } else {
 
-    return res.status(500).json({ message: error.message });
     }
   }
 })
@@ -43,9 +43,11 @@ router.get(":id", async (req: Request, res: Response)=>{
       orderBy: { clientTs: "asc" },
     });
     res.json(events);
-  } catch (error) {
+  } catch (error: unknown) {
+    if (error instanceof Error){
     return res.status(500).json({ message: error.message });
-  }
+    }
+    }
 })
 
 export default router;
