@@ -1,4 +1,4 @@
-// type EventTypes = 'api-call' | 'click' | 'page-view';
+ export type EventTypes = 'api-call' | 'click' | 'page-view';
 //
 // export interface Events<T> {
 //   id: string;

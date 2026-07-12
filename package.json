@@ -2,11 +2,14 @@
   "name": "RuntimeX",
   "version": "1.0.0",
   "description": "",
-  "main": "app.ts",
+  "main": "./src/app.ts",
   "scripts": {
-    "dev": "tsc --watch",
-    "start": "nodemon  dist/app.js",
-    "seed": "pnx prisma migrate dev --name init"
+    "dev": "bun --watch run src/app.ts",
+    "start": "bun  run src/app.ts",
+    "seed": "bunx prisma migrate dev --name init",
+    "generate": "bunx prisma generate",
+    "studio": "bunx prisma studio",
+    "reset": "bunx prisma migrate reset"
   },
   "dependencies": {
     "@prisma/adapter-pg": "^7.8.0",

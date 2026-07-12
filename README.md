@@ -9,3 +9,13 @@ and install the client to use it which is the: pn i @prisma/client
 
 After the long days i'm again trying to do the some sort of progress
 with i try to create some basic routes with the very basic setups./
+
+
+
+
+- Content updation on the db:
+when i've update a conent i can just a generate a databases with a simply a reet bunx prisma migrate dev --name init_events_schema
+ before that just do a bun reset to reset a Content.
+
+
+ 

@@ -7,13 +7,14 @@ datasource db {
 
 generator client {
   provider = "prisma-client"
-  output   = "../src/generated/prisma"
+  output   = "../generated/prisma"
 }
 
 enum Type{
   api_call
   render
 }
+
 model Events{
   id String @id @default(uuid())
   project_id String 
