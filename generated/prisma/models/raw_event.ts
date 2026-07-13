@@ -187,7 +187,7 @@ export type raw_eventWhereInput = {
   AND?: Prisma.raw_eventWhereInput | Prisma.raw_eventWhereInput[]
   OR?: Prisma.raw_eventWhereInput[]
   NOT?: Prisma.raw_eventWhereInput | Prisma.raw_eventWhereInput[]
-  id?: Prisma.StringFilter<"raw_event"> | string
+  id?: Prisma.UuidFilter<"raw_event"> | string
   project_id?: Prisma.StringFilter<"raw_event"> | string
   session_id?: Prisma.StringFilter<"raw_event"> | string
   type?: Prisma.StringFilter<"raw_event"> | string
@@ -242,7 +242,7 @@ export type raw_eventScalarWhereWithAggregatesInput = {
   AND?: Prisma.raw_eventScalarWhereWithAggregatesInput | Prisma.raw_eventScalarWhereWithAggregatesInput[]
   OR?: Prisma.raw_eventScalarWhereWithAggregatesInput[]
   NOT?: Prisma.raw_eventScalarWhereWithAggregatesInput | Prisma.raw_eventScalarWhereWithAggregatesInput[]
-  id?: Prisma.StringWithAggregatesFilter<"raw_event"> | string
+  id?: Prisma.UuidWithAggregatesFilter<"raw_event"> | string
   project_id?: Prisma.StringWithAggregatesFilter<"raw_event"> | string
   session_id?: Prisma.StringWithAggregatesFilter<"raw_event"> | string
   type?: Prisma.StringWithAggregatesFilter<"raw_event"> | string
@@ -489,7 +489,7 @@ export type raw_eventScalarWhereInput = {
   AND?: Prisma.raw_eventScalarWhereInput | Prisma.raw_eventScalarWhereInput[]
   OR?: Prisma.raw_eventScalarWhereInput[]
   NOT?: Prisma.raw_eventScalarWhereInput | Prisma.raw_eventScalarWhereInput[]
-  id?: Prisma.StringFilter<"raw_event"> | string
+  id?: Prisma.UuidFilter<"raw_event"> | string
   project_id?: Prisma.StringFilter<"raw_event"> | string
   session_id?: Prisma.StringFilter<"raw_event"> | string
   type?: Prisma.StringFilter<"raw_event"> | string

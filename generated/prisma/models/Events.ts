@@ -187,7 +187,7 @@ export type eventsWhereInput = {
   AND?: Prisma.eventsWhereInput | Prisma.eventsWhereInput[]
   OR?: Prisma.eventsWhereInput[]
   NOT?: Prisma.eventsWhereInput | Prisma.eventsWhereInput[]
-  id?: Prisma.StringFilter<"events"> | string
+  id?: Prisma.UuidFilter<"events"> | string
   project_id?: Prisma.StringFilter<"events"> | string
   session_id?: Prisma.StringFilter<"events"> | string
   type?: Prisma.EnumTypeFilter<"events"> | $Enums.Type
@@ -236,7 +236,7 @@ export type eventsScalarWhereWithAggregatesInput = {
   AND?: Prisma.eventsScalarWhereWithAggregatesInput | Prisma.eventsScalarWhereWithAggregatesInput[]
   OR?: Prisma.eventsScalarWhereWithAggregatesInput[]
   NOT?: Prisma.eventsScalarWhereWithAggregatesInput | Prisma.eventsScalarWhereWithAggregatesInput[]
-  id?: Prisma.StringWithAggregatesFilter<"events"> | string
+  id?: Prisma.UuidWithAggregatesFilter<"events"> | string
   project_id?: Prisma.StringWithAggregatesFilter<"events"> | string
   session_id?: Prisma.StringWithAggregatesFilter<"events"> | string
   type?: Prisma.EnumTypeWithAggregatesFilter<"events"> | $Enums.Type

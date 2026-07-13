@@ -170,12 +170,12 @@ export type sessionWhereInput = {
   AND?: Prisma.sessionWhereInput | Prisma.sessionWhereInput[]
   OR?: Prisma.sessionWhereInput[]
   NOT?: Prisma.sessionWhereInput | Prisma.sessionWhereInput[]
-  id?: Prisma.StringFilter<"session"> | string
+  id?: Prisma.UuidFilter<"session"> | string
   project_id?: Prisma.StringFilter<"session"> | string
   started_at?: Prisma.DateTimeFilter<"session"> | Date | string
   ended_at?: Prisma.DateTimeNullableFilter<"session"> | Date | string | null
-  project?: Prisma.XOR<Prisma.ProjectScalarRelationFilter, Prisma.projectWhereInput>
   raw_events?: Prisma.Raw_eventListRelationFilter
+  project?: Prisma.XOR<Prisma.ProjectScalarRelationFilter, Prisma.projectWhereInput>
 }
 
 export type sessionOrderByWithRelationInput = {
@@ -183,8 +183,8 @@ export type sessionOrderByWithRelationInput = {
   project_id?: Prisma.SortOrder
   started_at?: Prisma.SortOrder
   ended_at?: Prisma.SortOrderInput | Prisma.SortOrder
-  project?: Prisma.projectOrderByWithRelationInput
   raw_events?: Prisma.raw_eventOrderByRelationAggregateInput
+  project?: Prisma.projectOrderByWithRelationInput
 }
 
 export type sessionWhereUniqueInput = Prisma.AtLeast<{
@@ -195,8 +195,8 @@ export type sessionWhereUniqueInput = Prisma.AtLeast<{
   project_id?: Prisma.StringFilter<"session"> | string
   started_at?: Prisma.DateTimeFilter<"session"> | Date | string
   ended_at?: Prisma.DateTimeNullableFilter<"session"> | Date | string | null
-  project?: Prisma.XOR<Prisma.ProjectScalarRelationFilter, Prisma.projectWhereInput>
   raw_events?: Prisma.Raw_eventListRelationFilter
+  project?: Prisma.XOR<Prisma.ProjectScalarRelationFilter, Prisma.projectWhereInput>
 }, "id">
 
 export type sessionOrderByWithAggregationInput = {
@@ -213,7 +213,7 @@ export type sessionScalarWhereWithAggregatesInput = {
   AND?: Prisma.sessionScalarWhereWithAggregatesInput | Prisma.sessionScalarWhereWithAggregatesInput[]
   OR?: Prisma.sessionScalarWhereWithAggregatesInput[]
   NOT?: Prisma.sessionScalarWhereWithAggregatesInput | Prisma.sessionScalarWhereWithAggregatesInput[]
-  id?: Prisma.StringWithAggregatesFilter<"session"> | string
+  id?: Prisma.UuidWithAggregatesFilter<"session"> | string
   project_id?: Prisma.StringWithAggregatesFilter<"session"> | string
   started_at?: Prisma.DateTimeWithAggregatesFilter<"session"> | Date | string
   ended_at?: Prisma.DateTimeNullableWithAggregatesFilter<"session"> | Date | string | null
@@ -223,8 +223,8 @@ export type sessionCreateInput = {
   id?: string
   started_at?: Date | string
   ended_at?: Date | string | null
-  project: Prisma.projectCreateNestedOneWithoutSessionsInput
   raw_events?: Prisma.raw_eventCreateNestedManyWithoutSessionInput
+  project: Prisma.projectCreateNestedOneWithoutSessionsInput
 }
 
 export type sessionUncheckedCreateInput = {
@@ -239,8 +239,8 @@ export type sessionUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   started_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ended_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  project?: Prisma.projectUpdateOneRequiredWithoutSessionsNestedInput
   raw_events?: Prisma.raw_eventUpdateManyWithoutSessionNestedInput
+  project?: Prisma.projectUpdateOneRequiredWithoutSessionsNestedInput
 }
 
 export type sessionUncheckedUpdateInput = {
@@ -407,7 +407,7 @@ export type sessionScalarWhereInput = {
   AND?: Prisma.sessionScalarWhereInput | Prisma.sessionScalarWhereInput[]
   OR?: Prisma.sessionScalarWhereInput[]
   NOT?: Prisma.sessionScalarWhereInput | Prisma.sessionScalarWhereInput[]
-  id?: Prisma.StringFilter<"session"> | string
+  id?: Prisma.UuidFilter<"session"> | string
   project_id?: Prisma.StringFilter<"session"> | string
   started_at?: Prisma.DateTimeFilter<"session"> | Date | string
   ended_at?: Prisma.DateTimeNullableFilter<"session"> | Date | string | null
@@ -519,8 +519,8 @@ export type sessionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   project_id?: boolean
   started_at?: boolean
   ended_at?: boolean
-  project?: boolean | Prisma.projectDefaultArgs<ExtArgs>
   raw_events?: boolean | Prisma.session$raw_eventsArgs<ExtArgs>
+  project?: boolean | Prisma.projectDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.SessionCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["session"]>
 
@@ -549,8 +549,8 @@ export type sessionSelectScalar = {
 
 export type sessionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "project_id" | "started_at" | "ended_at", ExtArgs["result"]["session"]>
 export type sessionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  project?: boolean | Prisma.projectDefaultArgs<ExtArgs>
   raw_events?: boolean | Prisma.session$raw_eventsArgs<ExtArgs>
+  project?: boolean | Prisma.projectDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.SessionCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type sessionIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -563,8 +563,8 @@ export type sessionIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
 export type $sessionPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "session"
   objects: {
-    project: Prisma.$projectPayload<ExtArgs>
     raw_events: Prisma.$raw_eventPayload<ExtArgs>[]
+    project: Prisma.$projectPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -965,8 +965,8 @@ readonly fields: sessionFieldRefs;
  */
 export interface Prisma__sessionClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  project<T extends Prisma.projectDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.projectDefaultArgs<ExtArgs>>): Prisma.Prisma__projectClient<runtime.Types.Result.GetResult<Prisma.$projectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   raw_events<T extends Prisma.session$raw_eventsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.session$raw_eventsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$raw_eventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  project<T extends Prisma.projectDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.projectDefaultArgs<ExtArgs>>): Prisma.Prisma__projectClient<runtime.Types.Result.GetResult<Prisma.$projectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.

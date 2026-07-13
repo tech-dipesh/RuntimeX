@@ -1,25 +1,24 @@
 {
   // Visit https://aka.ms/tsconfig to read more about this file
   "compilerOptions": {
-  "lib": ["ESNext", "DOM"],
-  "esModuleInterop": true,
-  "ignoreDeprecations": "6.0",
-  "target": "es2023",
-  "module": "ESNext",
-  "moduleResolution": "Bundler",
-  "rootDir": ".",
-  "outDir": "./dist",
-  "strict": true,
-  "skipLibCheck": true,
-  "forceConsistentCasingInFileNames": true
-},
-"include": [
+    "lib": ["ESNext", "DOM"],
+    "esModuleInterop": true,
+    "target": "es2023",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "rootDir": ".",
+    "outDir": "./dist",
+    "strict": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": [
     "src/**/*.ts",
-    "generated/**/*.ts"
+    "generated/**/*.ts",
   ],
-"exclude": ["node_modules"],
-    "paths": {
-      "@/*": ["./src/*"],
-      "@generated/*": ["./generated/*"],
-    }
+  "baseUrl": ".",
+  "exclude": ["node_modules"],
+  "paths": {
+    "@/*": ["./src/*"],
+    "@generated/*": ["./generated/*"]    }
 }

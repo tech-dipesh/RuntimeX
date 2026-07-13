@@ -1,38 +1,14 @@
-/*
-  Warnings:
+-- CreateExtension
+CREATE EXTENSION IF NOT EXISTS "pgcrypto";
 
-  - You are about to drop the `Events` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `Project` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `RawEvent` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `Session` table. If the table is not empty, all the data it contains will be lost.
-
-*/
--- DropForeignKey
-ALTER TABLE "RawEvent" DROP CONSTRAINT "RawEvent_projectId_fkey";
-
--- DropForeignKey
-ALTER TABLE "RawEvent" DROP CONSTRAINT "RawEvent_sessionId_fkey";
-
--- DropForeignKey
-ALTER TABLE "Session" DROP CONSTRAINT "Session_projectId_fkey";
-
--- DropTable
-DROP TABLE "Events";
-
--- DropTable
-DROP TABLE "Project";
-
--- DropTable
-DROP TABLE "RawEvent";
-
--- DropTable
-DROP TABLE "Session";
+-- CreateEnum
+CREATE TYPE "Type" AS ENUM ('api_call', 'render');
 
 -- CreateTable
 CREATE TABLE "events" (
-    "id" TEXT NOT NULL,
-    "project_id" TEXT NOT NULL,
-    "session_id" TEXT NOT NULL,
+    "id" UUID NOT NULL DEFAULT gen_random_uuid(),
+    "project_id" UUID NOT NULL,
+    "session_id" UUID NOT NULL,
     "type" "Type" NOT NULL DEFAULT 'api_call',
     "payload" JSONB NOT NULL,
     "client_ts" TIMESTAMP(3) NOT NULL,
@@ -43,18 +19,18 @@ CREATE TABLE "events" (
 
 -- CreateTable
 CREATE TABLE "project" (
-    "id" TEXT NOT NULL,
+    "id" UUID NOT NULL DEFAULT gen_random_uuid(),
     "name" TEXT NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) NOT NULL,
+    "updated_at" TIMESTAMP(3),
 
     CONSTRAINT "project_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "session" (
-    "id" TEXT NOT NULL,
-    "project_id" TEXT NOT NULL,
+    "id" UUID NOT NULL DEFAULT gen_random_uuid(),
+    "project_id" UUID NOT NULL,
     "started_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "ended_at" TIMESTAMP(3),
 
@@ -63,9 +39,9 @@ CREATE TABLE "session" (
 
 -- CreateTable
 CREATE TABLE "raw_event" (
-    "id" TEXT NOT NULL,
-    "project_id" TEXT NOT NULL,
-    "session_id" TEXT NOT NULL,
+    "id" UUID NOT NULL DEFAULT gen_random_uuid(),
+    "project_id" UUID NOT NULL,
+    "session_id" UUID NOT NULL,
     "type" TEXT NOT NULL,
     "payload" JSONB NOT NULL,
     "client_ts" TIMESTAMP(3) NOT NULL,
