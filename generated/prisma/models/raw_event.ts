@@ -188,8 +188,8 @@ export type raw_eventWhereInput = {
   OR?: Prisma.raw_eventWhereInput[]
   NOT?: Prisma.raw_eventWhereInput | Prisma.raw_eventWhereInput[]
   id?: Prisma.UuidFilter<"raw_event"> | string
-  project_id?: Prisma.StringFilter<"raw_event"> | string
-  session_id?: Prisma.StringFilter<"raw_event"> | string
+  project_id?: Prisma.UuidFilter<"raw_event"> | string
+  session_id?: Prisma.UuidFilter<"raw_event"> | string
   type?: Prisma.StringFilter<"raw_event"> | string
   payload?: Prisma.JsonFilter<"raw_event">
   client_ts?: Prisma.DateTimeFilter<"raw_event"> | Date | string
@@ -215,8 +215,8 @@ export type raw_eventWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.raw_eventWhereInput | Prisma.raw_eventWhereInput[]
   OR?: Prisma.raw_eventWhereInput[]
   NOT?: Prisma.raw_eventWhereInput | Prisma.raw_eventWhereInput[]
-  project_id?: Prisma.StringFilter<"raw_event"> | string
-  session_id?: Prisma.StringFilter<"raw_event"> | string
+  project_id?: Prisma.UuidFilter<"raw_event"> | string
+  session_id?: Prisma.UuidFilter<"raw_event"> | string
   type?: Prisma.StringFilter<"raw_event"> | string
   payload?: Prisma.JsonFilter<"raw_event">
   client_ts?: Prisma.DateTimeFilter<"raw_event"> | Date | string
@@ -243,8 +243,8 @@ export type raw_eventScalarWhereWithAggregatesInput = {
   OR?: Prisma.raw_eventScalarWhereWithAggregatesInput[]
   NOT?: Prisma.raw_eventScalarWhereWithAggregatesInput | Prisma.raw_eventScalarWhereWithAggregatesInput[]
   id?: Prisma.UuidWithAggregatesFilter<"raw_event"> | string
-  project_id?: Prisma.StringWithAggregatesFilter<"raw_event"> | string
-  session_id?: Prisma.StringWithAggregatesFilter<"raw_event"> | string
+  project_id?: Prisma.UuidWithAggregatesFilter<"raw_event"> | string
+  session_id?: Prisma.UuidWithAggregatesFilter<"raw_event"> | string
   type?: Prisma.StringWithAggregatesFilter<"raw_event"> | string
   payload?: Prisma.JsonWithAggregatesFilter<"raw_event">
   client_ts?: Prisma.DateTimeWithAggregatesFilter<"raw_event"> | Date | string
@@ -490,8 +490,8 @@ export type raw_eventScalarWhereInput = {
   OR?: Prisma.raw_eventScalarWhereInput[]
   NOT?: Prisma.raw_eventScalarWhereInput | Prisma.raw_eventScalarWhereInput[]
   id?: Prisma.UuidFilter<"raw_event"> | string
-  project_id?: Prisma.StringFilter<"raw_event"> | string
-  session_id?: Prisma.StringFilter<"raw_event"> | string
+  project_id?: Prisma.UuidFilter<"raw_event"> | string
+  session_id?: Prisma.UuidFilter<"raw_event"> | string
   type?: Prisma.StringFilter<"raw_event"> | string
   payload?: Prisma.JsonFilter<"raw_event">
   client_ts?: Prisma.DateTimeFilter<"raw_event"> | Date | string

@@ -1,4 +1,4 @@
-import express, { Request, Response } from 'express';
+import express, { Request, Response, NextFunction } from 'express';
 import "dotenv/config";
 import {prisma} from "./lib/prisma.js";
 import EventsRoutes from "./routes/events.routes"
@@ -7,6 +7,24 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(express.json());
+const ErrorhandlerMiddleware=(err: Error, req: Request, res: Response, next: NextFunction)=> {
+  const statuscode = err.statusCode || 500;
+  const message = err.message || "UnExpected Error Occured";
+  return res.status(statuscode).json({
+		success: false,
+		message: "Gone the Last Error ErrorhandlerMiddleware",
+		data:  message,
+		errros: err,
+  })
+  
+}
+app.use( async (req: Request, res: Response, next: NextFunction) => {
+	try {
+	next()	
+	} catch (error) {
+	  next(error)
+	}
+});
 app.get('/', (req: Request, res: Response) => {
   res.status(200).json({ message: 'Success' });
 });  

@@ -188,8 +188,8 @@ export type eventsWhereInput = {
   OR?: Prisma.eventsWhereInput[]
   NOT?: Prisma.eventsWhereInput | Prisma.eventsWhereInput[]
   id?: Prisma.UuidFilter<"events"> | string
-  project_id?: Prisma.StringFilter<"events"> | string
-  session_id?: Prisma.StringFilter<"events"> | string
+  project_id?: Prisma.UuidFilter<"events"> | string
+  session_id?: Prisma.UuidFilter<"events"> | string
   type?: Prisma.EnumTypeFilter<"events"> | $Enums.Type
   payload?: Prisma.JsonFilter<"events">
   client_ts?: Prisma.DateTimeFilter<"events"> | Date | string
@@ -211,8 +211,8 @@ export type eventsWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.eventsWhereInput | Prisma.eventsWhereInput[]
   OR?: Prisma.eventsWhereInput[]
   NOT?: Prisma.eventsWhereInput | Prisma.eventsWhereInput[]
-  project_id?: Prisma.StringFilter<"events"> | string
-  session_id?: Prisma.StringFilter<"events"> | string
+  project_id?: Prisma.UuidFilter<"events"> | string
+  session_id?: Prisma.UuidFilter<"events"> | string
   type?: Prisma.EnumTypeFilter<"events"> | $Enums.Type
   payload?: Prisma.JsonFilter<"events">
   client_ts?: Prisma.DateTimeFilter<"events"> | Date | string
@@ -237,8 +237,8 @@ export type eventsScalarWhereWithAggregatesInput = {
   OR?: Prisma.eventsScalarWhereWithAggregatesInput[]
   NOT?: Prisma.eventsScalarWhereWithAggregatesInput | Prisma.eventsScalarWhereWithAggregatesInput[]
   id?: Prisma.UuidWithAggregatesFilter<"events"> | string
-  project_id?: Prisma.StringWithAggregatesFilter<"events"> | string
-  session_id?: Prisma.StringWithAggregatesFilter<"events"> | string
+  project_id?: Prisma.UuidWithAggregatesFilter<"events"> | string
+  session_id?: Prisma.UuidWithAggregatesFilter<"events"> | string
   type?: Prisma.EnumTypeWithAggregatesFilter<"events"> | $Enums.Type
   payload?: Prisma.JsonWithAggregatesFilter<"events">
   client_ts?: Prisma.DateTimeWithAggregatesFilter<"events"> | Date | string

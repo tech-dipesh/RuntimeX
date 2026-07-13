@@ -171,7 +171,7 @@ export type sessionWhereInput = {
   OR?: Prisma.sessionWhereInput[]
   NOT?: Prisma.sessionWhereInput | Prisma.sessionWhereInput[]
   id?: Prisma.UuidFilter<"session"> | string
-  project_id?: Prisma.StringFilter<"session"> | string
+  project_id?: Prisma.UuidFilter<"session"> | string
   started_at?: Prisma.DateTimeFilter<"session"> | Date | string
   ended_at?: Prisma.DateTimeNullableFilter<"session"> | Date | string | null
   raw_events?: Prisma.Raw_eventListRelationFilter
@@ -192,7 +192,7 @@ export type sessionWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.sessionWhereInput | Prisma.sessionWhereInput[]
   OR?: Prisma.sessionWhereInput[]
   NOT?: Prisma.sessionWhereInput | Prisma.sessionWhereInput[]
-  project_id?: Prisma.StringFilter<"session"> | string
+  project_id?: Prisma.UuidFilter<"session"> | string
   started_at?: Prisma.DateTimeFilter<"session"> | Date | string
   ended_at?: Prisma.DateTimeNullableFilter<"session"> | Date | string | null
   raw_events?: Prisma.Raw_eventListRelationFilter
@@ -214,7 +214,7 @@ export type sessionScalarWhereWithAggregatesInput = {
   OR?: Prisma.sessionScalarWhereWithAggregatesInput[]
   NOT?: Prisma.sessionScalarWhereWithAggregatesInput | Prisma.sessionScalarWhereWithAggregatesInput[]
   id?: Prisma.UuidWithAggregatesFilter<"session"> | string
-  project_id?: Prisma.StringWithAggregatesFilter<"session"> | string
+  project_id?: Prisma.UuidWithAggregatesFilter<"session"> | string
   started_at?: Prisma.DateTimeWithAggregatesFilter<"session"> | Date | string
   ended_at?: Prisma.DateTimeNullableWithAggregatesFilter<"session"> | Date | string | null
 }
@@ -408,7 +408,7 @@ export type sessionScalarWhereInput = {
   OR?: Prisma.sessionScalarWhereInput[]
   NOT?: Prisma.sessionScalarWhereInput | Prisma.sessionScalarWhereInput[]
   id?: Prisma.UuidFilter<"session"> | string
-  project_id?: Prisma.StringFilter<"session"> | string
+  project_id?: Prisma.UuidFilter<"session"> | string
   started_at?: Prisma.DateTimeFilter<"session"> | Date | string
   ended_at?: Prisma.DateTimeNullableFilter<"session"> | Date | string | null
 }
