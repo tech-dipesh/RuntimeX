@@ -13,10 +13,10 @@ export const eventSchema = z.object({
 export type userTypes = z.infer<typeof eventSchema>;
 
 const singleEventSchema = z.object({
-  projectId: z.string().min(1),
-  sessionId: z.string().min(1),
-  type: z.string().min(1),
-  timestamp: z.number(),
+  projectId: z.string({error: "Please Enter a Project Id"}).min(1).optional(),
+  sessionId: z.string({error: "Please Enter a session Id"}).min(1).optional(),
+  type: z.string({error: "Please Enter a Type Id"}).min(1),
+  timestamp: z.number({error: "Please Enter a timestamp Id"}).optional(),
   payload: z.looseObject({})
 });
 // const singleEventSchema = z.object({

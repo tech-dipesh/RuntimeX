@@ -51,10 +51,10 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
-  Events: 'Events',
-  Project: 'Project',
-  Session: 'Session',
-  RawEvent: 'RawEvent'
+  events: 'events',
+  project: 'project',
+  session: 'session',
+  raw_event: 'raw_event'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -89,8 +89,8 @@ export type EventsScalarFieldEnum = (typeof EventsScalarFieldEnum)[keyof typeof 
 export const ProjectScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  created_at: 'created_at',
+  updated_at: 'updated_at'
 } as const
 
 export type ProjectScalarFieldEnum = (typeof ProjectScalarFieldEnum)[keyof typeof ProjectScalarFieldEnum]
@@ -98,25 +98,25 @@ export type ProjectScalarFieldEnum = (typeof ProjectScalarFieldEnum)[keyof typeo
 
 export const SessionScalarFieldEnum = {
   id: 'id',
-  projectId: 'projectId',
-  startedAt: 'startedAt',
-  endedAt: 'endedAt'
+  project_id: 'project_id',
+  started_at: 'started_at',
+  ended_at: 'ended_at'
 } as const
 
 export type SessionScalarFieldEnum = (typeof SessionScalarFieldEnum)[keyof typeof SessionScalarFieldEnum]
 
 
-export const RawEventScalarFieldEnum = {
+export const Raw_eventScalarFieldEnum = {
   id: 'id',
-  projectId: 'projectId',
-  sessionId: 'sessionId',
+  project_id: 'project_id',
+  session_id: 'session_id',
   type: 'type',
   payload: 'payload',
-  clientTs: 'clientTs',
-  receivedAt: 'receivedAt'
+  client_ts: 'client_ts',
+  received_at: 'received_at'
 } as const
 
-export type RawEventScalarFieldEnum = (typeof RawEventScalarFieldEnum)[keyof typeof RawEventScalarFieldEnum]
+export type Raw_eventScalarFieldEnum = (typeof Raw_eventScalarFieldEnum)[keyof typeof Raw_eventScalarFieldEnum]
 
 
 export const SortOrder = {

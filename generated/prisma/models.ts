@@ -8,8 +8,8 @@
  *
  * 🟢 You can import this file directly.
  */
-export type * from './models/Events'
-export type * from './models/Project'
-export type * from './models/Session'
-export type * from './models/RawEvent'
+export type * from './models/events'
+export type * from './models/project'
+export type * from './models/session'
+export type * from './models/raw_event'
 export type * from './commonInputTypes'

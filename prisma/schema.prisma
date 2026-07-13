@@ -1,56 +1,55 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-datasource db {
-  provider = "postgresql" 
-}
-// Get a free hosted Postgres database in seconds: `npx create-db`
-
 generator client {
-  provider = "prisma-client"
-  output   = "../generated/prisma"
+  provider        = "prisma-client"
+  output          = "../generated/prisma"
+  previewFeatures = ["postgresqlExtensions"]
 }
 
-enum Type{
-  api_call
-  render
+datasource db {
+  provider   = "postgresql"
+  extensions = [pgcrypto]
 }
 
-model Events{
-  id String @id @default(uuid())
-  project_id String 
-  session_id String 
-  type Type @default(api_call)
-  payload Json
-  client_ts DateTime
+model events {
+  id          String   @id @default(uuid(7))
+  project_id  String
+  session_id  String
+  type        Type     @default(api_call)
+  payload     Json
+  client_ts   DateTime
   received_at DateTime @default(now())
 }
 
-model Project {
-  id        String     @id @default(uuid())
-  name      String
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
-  sessions  Session[]
-  rawEvents RawEvent[]
+model project {
+  id         String      @id @default("gen_random_uuid()")
+  name       String
+  created_at DateTime    @default(now())
+  updated_at DateTime?
+  raw_events raw_event[]
+  sessions   session[]
 }
 
-model Session {
-  id        String     @id @default(uuid())
-  projectId String
-  startedAt DateTime   @default(now())
-  endedAt   DateTime?
-  project   Project    @relation(fields: [projectId], references: [id])
-  rawEvents RawEvent[]
+model session {
+  id         String      @id @default(uuid(7))
+  project_id String
+  started_at DateTime    @default(now())
+  ended_at   DateTime?
+  raw_events raw_event[]
+  project    project     @relation(fields: [project_id], references: [id])
 }
 
-model RawEvent {
-  id         String   @id @default(uuid())
-  projectId  String
-  sessionId  String
-  type       String
-  payload    Json
-  clientTs   DateTime
-  receivedAt DateTime @default(now())
-  project    Project  @relation(fields: [projectId], references: [id])
-  session    Session  @relation(fields: [sessionId], references: [id])
+model raw_event {
+  id          String   @id @default(uuid(7))
+  project_id  String
+  session_id  String
+  type        String
+  payload     Json
+  client_ts   DateTime
+  received_at DateTime @default(now())
+  project     project  @relation(fields: [project_id], references: [id])
+  session     session  @relation(fields: [session_id], references: [id])
+}
+
+enum Type {
+  api_call
+  render
 }

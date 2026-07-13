@@ -18,4 +18,4 @@ when i've update a conent i can just a generate a databases with a simply a reet
  before that just do a bun reset to reset a Content.
 
 
- 
+ # so i must send a data on the array format that was a bug of my today.
