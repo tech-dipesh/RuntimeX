@@ -5,17 +5,40 @@ import Redis from "ioredis"
 import EventsRoutes from "./routes/events.routes"
 import HealthRoutes from "./routes/health.routes"
 const app = express();
-const port = process.env.PORT || 3000;
+const port = Number(process.env.PORT || 3000);
+const RATE_LIMIT = Number(process.env.RATE_LIMIT || 50);
 const redis=new Redis()
+
 interface Error {
   statusCode?: number;
   message?: string
 }
-const RedisRateLimiter = async (req: Request, res: Response, next: NextFunction)=>{
-  console.log('req', req.headers);
-  console.log("ip", req.socket.remoteAddress);
-next()
+const RedisRateLimiter = async (req: Request, res: Response, next: NextFunction) => {
+  let ip: string  | string []| undefined= req?.ip ?? req.headers['x-forwarded-for'];
+  if (!ip || typeof ip!=='string')  {
+    ip=req.socket.remoteAddress
+  }
+  const userKey=`limiter:${ip}`
+  const checkExist = await redis.get(userKey);
+  const convertToNumber: number = Number(checkExist);
+  if (checkExist && convertToNumber >= RATE_LIMIT) {
+    return res.status(429).json({
+		success: false,
+		message: "Rate Limiter Implemented",
+		data:  "Rate Limit Reached Please Try Again After Certain Time",
+		errros: checkExist,
+    })
+  }
+  if (!checkExist) {
+    await redis.set(userKey, 0, 'EX', 10);
+  }
+  else {
+    await redis.incr(userKey)
+  }
+  next()
 }
+
+app.set('trust proxy', true);
 app.use(express.json({limit: '1mb'}));
 const ErrorhandlerMiddleware=(err: Error, req: Request, res: Response, next: NextFunction)=> {
   const statuscode = err.statusCode || 500;
