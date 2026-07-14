@@ -19,3 +19,8 @@ when i've update a conent i can just a generate a databases with a simply a reet
 
 
  # so i must send a data on the array format that was a bug of my today.
+
+-- Adding a 1 mb limit to the Payload so user dont' send more than that a malicious content.
+
+
+ SEtup a Basic REdis with a port 6379,, with just track their ip and make a sliding window algorithm to implement a rate limiting
