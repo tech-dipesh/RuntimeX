@@ -24,3 +24,10 @@ when i've update a conent i can just a generate a databases with a simply a reet
 
 
  SEtup a Basic REdis with a port 6379,, with just track their ip and make a sliding window algorithm to implement a rate limiting
+
+
+
+Implemented a Redis with a Rate Limiter just a hard cap of the 40 second just a simple implementation as working on the other things currently hopefuly will improve those.
+
+
+-- Setup a env configuration with a separate folder if anything missing it'll return exit.

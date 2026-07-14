@@ -1,5 +1,6 @@
 import express, { Request, Response, NextFunction } from 'express';
 import "dotenv/config";
+import DotEnvConfig from "./config/env"
 import {prisma} from "./lib/prisma.js";
 import Redis from "ioredis"
 import EventsRoutes from "./routes/events.routes"
