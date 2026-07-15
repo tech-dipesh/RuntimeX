@@ -5,6 +5,7 @@ import {prisma} from "./lib/prisma.js";
 import {AllAppRoutes} from "./types/types"
 import Redis from "ioredis"
 import EventsRoutes from "./routes/events.routes"
+import ProjectsRoutes from "./routes/projects.routes"
 import HealthRoutes from "./routes/health.routes"
 const app = express();
 const port = Number(process.env.PORT || 3000);
@@ -67,6 +68,7 @@ app.get(AllAppRoutes.HOME, (req: Request, res: Response) => {
 });  
 app.use(AllAppRoutes.HEALTH, HealthRoutes)
 app.use(AllAppRoutes.EVENTS, EventsRoutes)
+app.use(AllAppRoutes.PROJECTS, ProjectsRoutes)
 
 const ConnectDBAndServer=async()=>{
   try {

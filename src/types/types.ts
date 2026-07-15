@@ -1,5 +1,6 @@
 export const AllAppRoutes = {
   HOME: '/',
   EVENTS: '/api/v1',
-  HEALTH: '/health'
+  HEALTH: '/health',
+  PROJECTS: '/api/v1/projects'
 } as const;
