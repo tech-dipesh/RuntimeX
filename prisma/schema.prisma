@@ -22,6 +22,7 @@ model events {
   payload     Json
   client_ts   DateTime
   received_at DateTime @default(now())
+  @@index([type, payload])
 }
 
 model project {
@@ -31,6 +32,7 @@ model project {
   updated_at DateTime?
   raw_events raw_event[]
   sessions   session[]
+  @@index([name])
 }
 
 model session {

@@ -3,7 +3,7 @@ import { prisma } from "../lib/prisma";
 
 const router=Router()
 
-router.get("/health", async (req: Request, res: Response) => {
+router.get("/", async (req: Request, res: Response) => {
   try {
     const exist = await prisma.$queryRaw`SELECT 1`;
     return res.status(200).json({

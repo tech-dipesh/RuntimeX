@@ -2,6 +2,7 @@ import express, { Request, Response, NextFunction } from 'express';
 import "dotenv/config";
 import DotEnvConfig from "./config/env"
 import {prisma} from "./lib/prisma.js";
+import {AllAppRoutes} from "./types/types"
 import Redis from "ioredis"
 import EventsRoutes from "./routes/events.routes"
 import HealthRoutes from "./routes/health.routes"
@@ -61,11 +62,11 @@ app.use( async (req: Request, res: Response, next: NextFunction) => {
     next(error)
   }
 });
-app.get('/', (req: Request, res: Response) => {
+app.get(AllAppRoutes.HOME, (req: Request, res: Response) => {
   res.status(200).json({ message: 'Success' });
 });  
-app.use(HealthRoutes)
-app.use('/api/v1', EventsRoutes)
+app.use(AllAppRoutes.HEALTH, HealthRoutes)
+app.use(AllAppRoutes.EVENTS, EventsRoutes)
 
 const ConnectDBAndServer=async()=>{
   try {

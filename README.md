@@ -31,3 +31,10 @@ Implemented a Redis with a Rate Limiter just a hard cap of the 40 second just a 
 
 
 -- Setup a env configuration with a separate folder if anything missing it'll return exit.
+
+
+Make a Static forced Routes with types.
+
+
+
+-- Implementa a indexing to a Project where we need a frequent access data.

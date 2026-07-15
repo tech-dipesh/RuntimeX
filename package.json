@@ -5,9 +5,11 @@
   "main": "./src/app.ts",
   "scripts": {
     "dev": "bun --watch run src/app.ts",
-    "typecheck": "tsc --noEmit",
+    "type": "tsc --noEmit",
+    "test": "bun test",
     "start": "bun  run src/app.ts",
     "seed": "bunx prisma migrate dev --name init",
+    "migrate": "prisma migrate dev",
     "generate": "bunx prisma generate",
     "studio": "bunx prisma studio",
     "validate": "bunx prisma validate",
