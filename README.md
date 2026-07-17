@@ -38,3 +38,18 @@ Make a Static forced Routes with types.
 
 
 -- Implementa a indexing to a Project where we need a frequent access data.
+
+
+
+
+
+## Implemetn on the Projects:
+- On the Projects will have the two routes such as Create new projects whichretur a cryptography unique keys.
+  - On the create newe projects the api_key once send to a user will store on the cryptographic encoded format only decode where we've send a same key.
+  - Store on the hash format on the db, with send to a user to store them.
+- another to see list of the all projects that we've created.
+
+
+## libraries:
+- `crypto` Cryptographically Secure Pseudorandom Number Generator which it use this algoritm to create a random charachater where i'm using a 32 chars.
+- `buffer-crc32` For Making a Algorirhtm to use where, based on cspng with crypto, baed on that it'll generate a unique key that only match ifit' match a ofrmat.
