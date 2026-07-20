@@ -10,7 +10,7 @@ const envSchema = z.object({
 const _env = envSchema.safeParse(process.env);
 
 if (!_env.success) {
-  console.error("Please Enter all the env keys", _env.error.format());
+  console.error("Please Enter all the env keys", _env.error);
   process.exit(1);
 }
 

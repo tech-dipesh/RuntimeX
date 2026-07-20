@@ -7,6 +7,7 @@ import Redis from "ioredis"
 import EventsRoutes from "./routes/events.routes"
 import ProjectsRoutes from "./routes/projects.routes"
 import HealthRoutes from "./routes/health.routes"
+import asyncHandler from './services/asyncHandler';
 const app = express();
 const port = Number(process.env.PORT || 3000);
 const RATE_LIMIT = Number(process.env.RATE_LIMIT || 50);
