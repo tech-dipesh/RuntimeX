@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import generateApiKey from "../utils/generateapikey";
 import bcyrpt from "bcrypt"
+import { prisma } from "../lib/prisma";
 export const getAllProjects=async (req: Request, res: Response) => {
   
   const {project_id, session_Id}=req.body
@@ -23,16 +24,19 @@ export const getAllProjects=async (req: Request, res: Response) => {
 
 
 export const CreateNewProjectApiKeys=async (req: Request, res: Response) => {
-  const { project_id, session_Id } = req.body ?? {};
+  const { project_id, session_Id, name } = req.body ?? {};
   try {
     const val=generateApiKey()
-    // const HashVAlue=bcrypt.
+    const HashVAlue = await bcyrpt.hash(val, 12);
     return res.status(200).json({
-      success: "hello",
-      message: 'test',
+      success: true,
+      message: "Successfully Generate a New Api Keys, Please Store on Somewhere you can only create once",
       data: val,
       errros: false,
     })
+    // const InsertOnDb = await prisma.project.create({
+    //   data: { }
+    // })
   } catch (error) {
     return res.status(500).json({
       success: false,

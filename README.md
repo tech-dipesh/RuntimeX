@@ -1,3 +1,6 @@
+
+# Process:
+Started a Project With Prisma Setup: 2026/05/17
 Start at 2026-05-17
 
 # installing a Prisma on the Project:
@@ -53,3 +56,4 @@ Make a Static forced Routes with types.
 ## libraries:
 - `crypto` Cryptographically Secure Pseudorandom Number Generator which it use this algoritm to create a random charachater where i'm using a 32 chars.
 - `buffer-crc32` For Making a Algorirhtm to use where, based on cspng with crypto, baed on that it'll generate a unique key that only match ifit' match a ofrmat.
+- I've also implement a time to leave feature on the project for the Redis plan to integrate and will plan.
