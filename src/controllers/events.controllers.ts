@@ -8,6 +8,7 @@ import { TYPE_ENUM } from "../types/events.types";
 
 export const CreatenewEvents=async (req: Request, res: Response) => {
   const result = batchSchema.safeParse(req.body);
+  console.log('success', result);
   if (!result.success) {
     return res.status(400).json({
       "success": false,
@@ -20,16 +21,17 @@ export const CreatenewEvents=async (req: Request, res: Response) => {
     user: "dip",
     age: "sharma"
   }
-  try {
     const eventsToCreate = result.data.map((event) => ({
-      project_id: event.project_id || '9d368e22-93f8-4f37-9d8a-2fad7b908433',
+      project_id: event.project_id ,
       session_id: event.session_id || 'ec94689b-6824-45ba-86f1-e3948943f074',
       type: event.type || TYPE_ENUM.API_CALL,
       payload: event.payload as Prisma.InputJsonValue || defaultUser,
-      client_ts: Temporal.Now.instant(),
+      // As the Prisma Yet Not Supported a `Temporal` api which i'm using as for now use a Default Date in build for suuport to the prisma
+      // client_ts: Temporal.Now.instant(),
+      client_ts: new Date(), 
       received_at: new Date(),
     }));
-    const createList = await prisma.raw_event.createMany({
+    const createList = await prisma.raw_event.createManyAndReturn({
       data: eventsToCreate,
     });
     console.log("list", createList);
@@ -39,23 +41,12 @@ export const CreatenewEvents=async (req: Request, res: Response) => {
       data:  createList ,
       errors: null
     });
-  } catch (error: unknown) {
-    if (error instanceof z.ZodError) {
-      return res.status(500).json({
-        success: false,
-        message: "Zod Validation Error",
-        data: error.message,
-        errors: error.name
-      });
-    }
-    else {
-      return res.status(500).json({ message: error.message });
-    }
-  }
 }
-
+interface IParam{
+  id: string
+}
 export const getIndivdualEvents=async (req: Request, res: Response) => {
-const { session_id: id } = req.params ?? {};
+const { session_id: id } = req.params ?? {} as unknown as IParam;
 try {
   if (!id) {
   return res.status(400).json( {
