@@ -9,35 +9,33 @@ datasource db {
   extensions = [pgcrypto]
 }
 
-
-enum Type {
-  api_call
-  render
-}
 model events {
-  id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  project_id  String  @db.Uuid
-  session_id  String  @db.Uuid
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  project_id  String   @db.Uuid
+  session_id  String   @db.Uuid
   type        Type     @default(api_call)
   payload     Json
   client_ts   DateTime
   received_at DateTime @default(now())
+
   @@index([type, payload])
 }
 
 model project {
-  id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id         String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   name       String
+  api_key    String?
   created_at DateTime    @default(now())
   updated_at DateTime?
   raw_events raw_event[]
   sessions   session[]
+
   @@index([name])
 }
 
 model session {
-  id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  project_id String @db.Uuid
+  id         String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  project_id String      @db.Uuid
   started_at DateTime    @default(now())
   ended_at   DateTime?
   raw_events raw_event[]
@@ -45,13 +43,18 @@ model session {
 }
 
 model raw_event {
-  id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  project_id  String  @db.Uuid
-  session_id  String  @db.Uuid
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  project_id  String   @db.Uuid
+  session_id  String   @db.Uuid
   type        String
   payload     Json
   client_ts   DateTime
   received_at DateTime @default(now())
   project     project  @relation(fields: [project_id], references: [id])
   session     session  @relation(fields: [session_id], references: [id])
+}
+
+enum Type {
+  api_call
+  render
 }

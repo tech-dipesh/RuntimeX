@@ -23,9 +23,9 @@ services:
     depends_on:
       - postgres
     networks:
-      - runtime_yeti_backend-
+      - runtime_runtime_backend-
     restart: unless-stopped
 
 networks:
-  yeti-network:
+  runtime-network:
     driver: bridge
