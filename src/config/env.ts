@@ -8,9 +8,10 @@ const envSchema = z.object({
 });
 
 const _env = envSchema.safeParse(process.env);
-
 if (!_env.success) {
-  console.error("Please Enter all the env keys", _env.error);
+  const envKey = _env.error.issues[0]?.path[0];
+  console.error(`Please Enter ${String(envKey)} Key in .env File`)
+  // console.error("Please Enter all the env keys", envKey);
   process.exit(1);
 }
 

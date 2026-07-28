@@ -14,10 +14,10 @@ export default function validate(schema: SchemaValidation) {
       req.params = schema.params.parse(req.params);
     }
     if (schema.query) {
-      req.query = schema.query.parse(req.query));
+      req.query = schema.query.parse(req.query);
     }
     if (schema.body) {
-      req.body=schema.bbody.parse(req.body)
+      req.body=schema.body.parse(req.body)
     }
     next()
   }

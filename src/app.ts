@@ -1,6 +1,6 @@
 import express, { Request, Response, NextFunction } from 'express';
 import "dotenv/config";
-import DotEnvConfig from "./config/env"
+import "./config/env"
 import {prisma} from "./lib/prisma.js";
 import {AllAppRoutes} from "./types/types"
 import EventsRoutes from "./routes/events.routes"
