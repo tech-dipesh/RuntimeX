@@ -62,3 +62,8 @@ Make a Static forced Routes with types.
 ## Features:
 - As the `Temporal` is not supported by the Prisma i've to use a legacy `Date` class for getting a current time, 
 - Using a Bun for the Everything, Package Manger, Test runner and the Runtime for Typescript
+- Add the Feature with the Global BatchSchema Validation with it validate and the send the data to it.
+- 
+
+
+- I've also make sure using a alias for the Import a My src of the ngerated contetn

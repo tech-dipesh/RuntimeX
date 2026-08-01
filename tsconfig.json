@@ -10,7 +10,11 @@
     "outDir": "./dist",
     "strict": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "paths": {
+         "@/*": ["./src/*"],
+         "@generated/*": ["./generated/*"]
+       }
   },
   "include": [
     "src/**/*.ts",
@@ -18,7 +22,8 @@
   ],
   "baseUrl": ".",
   "exclude": ["node_modules"],
-  "paths": {
-    "@/*": ["./src/*"],
-    "@generated/*": ["./generated/*"]    }
+  // "paths": {
+  //   "@/*": ["./src/*"],
+  //   "@generated/*": ["./generated/*"]   
+  // }
 }
