@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import generateApiKey from "../utils/generateapikey";
 import bcyrpt from "bcrypt"
-import { prisma } from "../lib/prisma";
+import { prisma } from "@/lib/prisma";
 export const getAllProjects=async (req: Request, res: Response) => {
   
   const {project_id, session_Id}=req.body

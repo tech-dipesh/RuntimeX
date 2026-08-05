@@ -1,7 +1,7 @@
 import express, { Request, Response, NextFunction } from 'express';
 import "dotenv/config";
 import "./config/env"
-import {prisma} from "./lib/prisma.js";
+import {prisma} from "@/lib/prisma";
 import {AllAppRoutes} from "./types/types"
 import EventsRoutes from "./routes/events.routes"
 import ProjectsRoutes from "./routes/projects.routes"
@@ -11,10 +11,10 @@ import RedisRateLimiter from './middleware/Redisratelimit';
 const app = express();
 const port = Number(process.env.PORT || 3000);
 
-interface Error {
-  statusCode?: number;
-  message?: string
-}
+// interface Error {
+//   statusCode?: number;
+//   message?: string
+// }
 app.set('trust proxy', true);
 app.use(express.json({limit: '1mb'}));
 const ErrorhandlerMiddleware=(err: Error, req: Request, res: Response, _next: NextFunction)=> {
