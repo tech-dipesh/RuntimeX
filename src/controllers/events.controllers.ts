@@ -3,7 +3,6 @@ import { Temporal } from '@js-temporal/polyfill';
 import { z } from "zod";
 import { Prisma } from "@generated/prisma/client";
 import {prisma} from "@/lib/prisma";
-// import { prisma } from "../lib/prisma";
 import { batchSchema , } from "../validations/events.validations";
 import { TYPE_ENUM } from "../types/events.types";
 

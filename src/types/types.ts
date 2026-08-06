@@ -4,3 +4,8 @@ export const AllAppRoutes = {
   HEALTH: '/health',
   PROJECTS: '/api/v1/projects'
 } as const;
+
+interface Error {
+  statusCode?: number;
+  message?: string
+}

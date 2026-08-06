@@ -3,7 +3,7 @@ import { TYPE_ENUM } from "../types/events.types";
 import { CreatenewEvents, EntireWebsiteStats, getIndivdualEvents } from "../controllers/events.controllers";
 import Errorhandler from "../utils/Errorhandler";
 import { batchSchema } from "../validations/events.validations";
-import validate from "../middleware/validate";
+import validate from "../middleware/validate.middleware";
 
 const router = Router();
 
