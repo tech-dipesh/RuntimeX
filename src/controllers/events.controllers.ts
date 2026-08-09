@@ -1,27 +1,16 @@
 import { Router, Request, Response } from "express";
 import { Temporal } from '@js-temporal/polyfill';
-import { z } from "zod";
 import { Prisma } from "@generated/prisma/client";
 import {prisma} from "@/lib/prisma";
 import { batchSchema , } from "../validations/events.validations";
 import { TYPE_ENUM } from "../types/events.types";
 
 export const CreatenewEvents=async (req: Request, res: Response) => {
-  const result = batchSchema.safeParse(req.body);
-  console.log('success', result);
-  if (!result.success) {
-    return res.status(400).json({
-      "success": false,
-      "message": "Invalid Data Please enter a data.",
-      "data":  result?.error?.issues[0].message ,
-      "errors":  result.error.message
-    })
-  }
   const defaultUser: object = {
-    user: "dip",
-    age: "sharma"
+    user: "Default User",
+    age: "Default Age: 99"
   }
-  const eventsToCreate = result.data.map((event) => ({
+  const eventsToCreate = req.body.map((event) => ({
     project_id: event.project_id ,
     session_id: event.session_id ,
     type: event.type || TYPE_ENUM.API_CALL,
@@ -34,7 +23,6 @@ export const CreatenewEvents=async (req: Request, res: Response) => {
   const createList = await prisma.raw_event.createManyAndReturn({
     data: eventsToCreate,
   });
-  console.log("list", createList);
   return res.status(200).json({
     success: true,
     message: "Successfully Injected List of Data",
@@ -47,7 +35,6 @@ interface IParam{
 }
 export const getIndivdualEvents=async (req: Request, res: Response) => {
   const { session_id: id } = req.params ?? {} as unknown as IParam;
-  try {
     if (!id) {
       return res.status(400).json( {
         success: false,
@@ -75,29 +62,9 @@ export const getIndivdualEvents=async (req: Request, res: Response) => {
       errros: false,
     })
   }
-  catch (error: unknown) {
-    if (error instanceof z.ZodError) {
-      return res.status(500).json({
-        success: false,
-        message: "Zod Validation Error",
-        data: error.message,
-        errors: error.name
-      });
-    }
-    else {
-      return res.status(500).json({
-        success: false,
-        message: "Logical Syntax Error Please check it",
-        data: {message: error},
-        errros: error,
-      })
-    }
-  }
-}
 
 
 export const EntireWebsiteStats=async (req: Request, res: Response) => {
-  try {
     const allEvent=await prisma.raw_event.count({}) 
     return res.status(200).json({
       success: true,
@@ -105,12 +72,4 @@ export const EntireWebsiteStats=async (req: Request, res: Response) => {
       data:  allEvent,
       errros: null,
     })
-  } catch (error) {
-    return res.status(500).json({
-      success: false,
-      message: "Server Error Occurred",
-      data: error,
-      errors: error
-    });
   }
-}

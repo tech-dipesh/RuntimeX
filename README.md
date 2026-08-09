@@ -1,4 +1,4 @@
-
+**RuntimeX is a backend-heavy observability platform that monitors how web applications behave internally in real time.**
 # Process:
 Started a Project With Prisma Setup: 2026/05/17
 Start at 2026-05-17
